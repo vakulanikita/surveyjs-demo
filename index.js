@@ -61,7 +61,7 @@ const surveyJson = {
     }],
 }],
   showQuestionNumbers: "off",
-  pageNextText: "Forward",
+  pageNextText: "Далее",
   completeText: "Далее",
   showPrevButton: false,
   firstPageIsStarted: true,
