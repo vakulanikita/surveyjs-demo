@@ -57,16 +57,16 @@ a {
   background-image: url("/images/bg.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 66px 50px 0 50px;
+  padding: 66px 50px 20px 50px;
 }
 @media screen and (max-width: 1400px), (max-height: 800px) {
   .container {
-    padding: 40px 32px 0 32px;
+    padding: 40px 32px 20px 32px;
   }
 }
 @media screen and (max-width: 768px) {
   .container {
-    padding: 30px 16px 0 16px;
+    padding: 30px 16px 20px 16px;
   }
 }
 
@@ -192,6 +192,7 @@ a {
 
 .sd-body.sd-body--responsive .sd-body__navigation {
   padding-top: 46px;
+  padding-bottom: 25px;
 }
 
 .sd-progress__bar {
@@ -233,12 +234,12 @@ h4.sd-title.sd-element__title > span {
   padding-top: 0;
 }
 
-sd-question__header sd-element__header sd-question__header--location-top sd-element__header--location-top sd-title sd-element__title sd-question__title sd-question__title--required .sd-element__header {
-  padding-bottom: 8px !important;
+.sd-element--with-frame > .sd-question__header {
+  padding-bottom: 46px;
 }
-sd-question__header sd-element__header sd-question__header--location-top sd-element__header--location-top sd-title sd-element__title sd-question__title sd-question__title--required .sd-element__header h5 {
-  font-size: 1.25rem;
-  color: #A1A1A1 !important;
+.sd-element--with-frame > .sd-question__header span {
+  font-size: 1.5rem;
+  font-weight: 900;
 }
 
 .finishScreen {

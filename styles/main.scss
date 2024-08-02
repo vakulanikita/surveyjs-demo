@@ -64,14 +64,14 @@ a {
   background-image: url('/images/bg.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 66px 50px 0 50px;
+  padding: 66px 50px 20px 50px;
 
   @media screen and (max-width: 1400px), (max-height: 800px) {
-    padding: 40px 32px 0 32px;
+    padding: 40px 32px 20px 32px;
   }
 
   @media screen and (max-width: 768px) {
-    padding: 30px 16px 0 16px;
+    padding: 30px 16px 20px 16px;
   }
 }
 
@@ -144,6 +144,7 @@ a {
 
 .sd-root-modern {
   border-radius: 18px;
+  // font-family: 'Red Hat Display', sans-serif !important;
 }
 
 .sd-action-bar {
@@ -240,6 +241,7 @@ a {
 
 .sd-body.sd-body--responsive .sd-body__navigation {
   padding-top: 46px;
+  padding-bottom: 25px;
 }
 
 // прогресс бар
@@ -270,7 +272,7 @@ h4.sd-title.sd-element__title > span {
   box-shadow: none;
 }
 
-.sd-element--complex>.sd-element__header {
+.sd-element--complex > .sd-element__header {
   &:after {
     content: none;
     display: none !important;
@@ -281,7 +283,7 @@ h4.sd-title.sd-element__title > span {
   padding: 52px 0 0 0;
 }
 
-.sd-element--complex.sd-element--with-frame>.sd-element__header {
+.sd-element--complex.sd-element--with-frame > .sd-element__header {
   padding-bottom: 46px;
   padding-top: 0;
 }
@@ -290,15 +292,11 @@ h4.sd-title.sd-element__title > span {
   padding-top: 0;
 }
 
-sd-question__header sd-element__header sd-question__header--location-top sd-element__header--location-top
-
-sd-title sd-element__title sd-question__title sd-question__title--required
-.sd-element__header {
-  padding-bottom: 8px !important;
-
-  h5 {
-    font-size: $xl;
-    color: #A1A1A1 !important;
+.sd-element--with-frame > .sd-question__header {
+  padding-bottom: 46px;
+  span {
+    font-size: $xl_3;
+    font-weight: $black;
   }
 }
 
