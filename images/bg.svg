@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="963" viewBox="0 0 1920 963">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#833471"/>
+      <stop offset="1" stop-color="#b53471"/>
+    </linearGradient>
+  </defs>
+  <g id="Сгруппировать_10158" data-name="Сгруппировать 10158" transform="translate(0 1)">
+    <rect id="Прямоугольник_17199" data-name="Прямоугольник 17199" width="1920" height="963" transform="translate(0 -1)" fill="url(#linear-gradient)"/>
+    <g id="Сгруппировать_10052" data-name="Сгруппировать 10052" transform="translate(0 -1)">
+      <path id="Контур_7797" data-name="Контур 7797" d="M3048-2364l343.939-481.516L3048-3327h343.872l343.983,481.464-343.939,481.475-.043.061Z" transform="translate(-3048 3327)" fill="#b53471"/>
+      <path id="Контур_7798" data-name="Контур 7798" d="M3401.82-2364H3058l172-240.747,171.888,240.615.046.131Zm-171.865-722.332L3058-3327h343.933l-171.865,240.668-.07.067Z" transform="translate(-2370.146 3327)" fill="#833471"/>
+    </g>
+  </g>
+</svg>

@@ -1,90 +1,407 @@
 // https://github.com/surveyjs/survey-library/blob/master/src/localization/english.ts
 // https://surveyjs.io/form-library/examples/survey-localization/jquery#content-code
 
-const engLocale = Survey.surveyLocalization.locales["en"];
-engLocale.requiredError = "Обязательное поле";
+// демка с номером страницы
+// https://surveyjs.io/form-library/examples/external-form-navigation-system/jquery#content-code
+
+// кастомные controls
+// https://surveyjs.io/form-library/examples/external-form-navigation-system/reactjs#content-code
+
+const theme = {
+  themeName: 'default',
+  colorPalette: 'light',
+  isPanelless: false,
+  backgroundImage: '',
+  backgroundOpacity: 1,
+  backgroundImageAttachment: 'scroll',
+  backgroundImageFit: 'cover',
+  cssVariables: {
+    // '--font-family': 'Red Hat Display',
+    '--sjs-corner-radius': '4px',
+    '--sjs-base-unit': '8px',
+    '--sjs-shadow-small': '0px 1px 2px 0px rgba(0, 0, 0, 0.15)',
+    '--sjs-shadow-inner': 'inset 0px 1px 2px 0px rgba(0, 0, 0, 0.15)',
+    '--sjs-border-default': 'rgba(0, 0, 0, 0.16)',
+    '--sjs-border-light': 'rgba(0, 0, 0, 0.09)',
+    '--sjs-general-backcolor': 'rgba(255, 255, 255, 1)',
+    '--sjs-general-backcolor-dark': 'rgba(248, 248, 248, 1)',
+    '--sjs-general-backcolor-dim-light': 'rgba(249, 249, 249, 1)',
+    '--sjs-general-backcolor-dim-dark': 'rgba(243, 243, 243, 1)',
+    '--sjs-general-forecolor': 'rgba(0, 0, 0, 0.91)',
+    '--sjs-general-forecolor-light': 'rgba(0, 0, 0, 0.45)',
+    '--sjs-general-dim-forecolor': 'rgba(0, 0, 0, 0.91)',
+    '--sjs-general-dim-forecolor-light': 'rgba(0, 0, 0, 0.45)',
+    '--sjs-secondary-backcolor': 'rgba(255, 152, 20, 1)',
+    '--sjs-secondary-backcolor-light': 'rgba(255, 152, 20, 0.1)',
+    '--sjs-secondary-backcolor-semi-light': 'rgba(255, 152, 20, 0.25)',
+    '--sjs-secondary-forecolor': 'rgba(255, 255, 255, 1)',
+    '--sjs-secondary-forecolor-light': 'rgba(255, 255, 255, 0.25)',
+    '--sjs-shadow-small-reset': '0px 0px 0px 0px rgba(0, 0, 0, 0.15)',
+    '--sjs-shadow-medium': '0px 2px 6px 0px rgba(0, 0, 0, 0.1)',
+    '--sjs-shadow-large': '0px 8px 16px 0px rgba(0, 0, 0, 0.1)',
+    '--sjs-shadow-inner-reset': 'inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)',
+    '--sjs-border-inside': 'rgba(0, 0, 0, 0.16)',
+    '--sjs-special-red-forecolor': 'rgba(255, 255, 255, 1)',
+    '--sjs-special-green': 'rgba(25, 179, 148, 1)',
+    '--sjs-special-green-light': 'rgba(25, 179, 148, 0.1)',
+    '--sjs-special-green-forecolor': 'rgba(255, 255, 255, 1)',
+    '--sjs-special-blue': 'rgba(67, 127, 217, 1)',
+    '--sjs-special-blue-light': 'rgba(67, 127, 217, 0.1)',
+    '--sjs-special-blue-forecolor': 'rgba(255, 255, 255, 1)',
+    '--sjs-special-yellow': 'rgba(255, 152, 20, 1)',
+    '--sjs-special-yellow-light': 'rgba(255, 152, 20, 0.1)',
+    '--sjs-special-yellow-forecolor': 'rgba(255, 255, 255, 1)',
+    '--sjs-article-font-xx-large-textDecoration': 'none',
+    '--sjs-article-font-xx-large-fontWeight': '700',
+    '--sjs-article-font-xx-large-fontStyle': 'normal',
+    '--sjs-article-font-xx-large-fontStretch': 'normal',
+    '--sjs-article-font-xx-large-letterSpacing': '0',
+    '--sjs-article-font-xx-large-lineHeight': '64px',
+    '--sjs-article-font-xx-large-paragraphIndent': '0px',
+    '--sjs-article-font-xx-large-textCase': 'none',
+    '--sjs-article-font-x-large-textDecoration': 'none',
+    '--sjs-article-font-x-large-fontWeight': '700',
+    '--sjs-article-font-x-large-fontStyle': 'normal',
+    '--sjs-article-font-x-large-fontStretch': 'normal',
+    '--sjs-article-font-x-large-letterSpacing': '0',
+    '--sjs-article-font-x-large-lineHeight': '56px',
+    '--sjs-article-font-x-large-paragraphIndent': '0px',
+    '--sjs-article-font-x-large-textCase': 'none',
+    '--sjs-article-font-large-textDecoration': 'none',
+    '--sjs-article-font-large-fontWeight': '700',
+    '--sjs-article-font-large-fontStyle': 'normal',
+    '--sjs-article-font-large-fontStretch': 'normal',
+    '--sjs-article-font-large-letterSpacing': '0',
+    '--sjs-article-font-large-lineHeight': '40px',
+    '--sjs-article-font-large-paragraphIndent': '0px',
+    '--sjs-article-font-large-textCase': 'none',
+    '--sjs-article-font-medium-textDecoration': 'none',
+    '--sjs-article-font-medium-fontWeight': '700',
+    '--sjs-article-font-medium-fontStyle': 'normal',
+    '--sjs-article-font-medium-fontStretch': 'normal',
+    '--sjs-article-font-medium-letterSpacing': '0',
+    '--sjs-article-font-medium-lineHeight': '32px',
+    '--sjs-article-font-medium-paragraphIndent': '0px',
+    '--sjs-article-font-medium-textCase': 'none',
+    '--sjs-article-font-default-textDecoration': 'none',
+    '--sjs-article-font-default-fontWeight': '400',
+    '--sjs-article-font-default-fontStyle': 'normal',
+    '--sjs-article-font-default-fontStretch': 'normal',
+    '--sjs-article-font-default-letterSpacing': '0',
+    '--sjs-article-font-default-lineHeight': '28px',
+    '--sjs-article-font-default-paragraphIndent': '0px',
+    '--sjs-article-font-default-textCase': 'none',
+    '--sjs-general-backcolor-dim': 'rgba(255, 255, 255, 1)',
+    '--sjs-primary-backcolor': 'rgba(25, 179, 148, 1)',
+    '--sjs-primary-backcolor-dark': 'rgba(20, 164, 139, 1)',
+    '--sjs-primary-backcolor-light': 'rgba(25, 179, 148, 0.1)',
+    '--sjs-primary-forecolor': 'rgba(255, 255, 255, 1)',
+    '--sjs-primary-forecolor-light': 'rgba(255, 255, 255, 0.25)',
+    '--sjs-special-red': 'rgba(229, 10, 62, 1)',
+    '--sjs-special-red-light': 'rgba(229, 10, 62, 0.1)',
+  },
+  headerView: 'basic',
+}
+
+const engLocale = Survey.surveyLocalization.locales['en']
+engLocale.requiredError = 'Обязательное поле'
+engLocale.otherItemText = 'Другое'
+// Response required: enter another value.
+engLocale.otherRequiredError = 'Заполните поле "Другое"'
+// Please enter a valid e-mail address.
+engLocale.invalidEmail = 'Введите, пожалуйста, корретный e-mail'
 
 const surveyJson = {
-  pages: [{
-      elements: [{
-          type: "html",
-          html: "<h4>In this survey, we will ask you a couple questions about your impressions of our product.</h4>"
-      }]
-  }, {
-      elements: [{
-          name: "satisfaction-score",
-          title: "How would you describe your experience with our product?",
-          type: "radiogroup",
-          choices: [
-              { value: 5, text: "Fully satisfying" },
-              { value: 4, text: "Generally satisfying" },
-              { value: 3, text: "Neutral" },
-              { value: 2, text: "Rather unsatisfying" },
-              { value: 1, text: "Not satisfying at all" }
+  pages: [
+    {
+      elements: [
+        {
+          type: 'html',
+          html: '<h4 class="welcomeH4">Хотите максимально использовать наш продукт?</h4> <span class="welcomeSpan">Ответьте на несколько вопросов, чтобы мы могли предложить наиболее эффективные решения и улучшить наш сервис для ваших целей и задач.</span>',
+        },
+      ],
+    },
+    {
+      name: 'slide1',
+      elements: [
+        {
+          type: 'panel',
+          name: 'data',
+          title: 'Ваши данные',
+          elements: [
+            {
+              type: 'text',
+              name: 'firstName',
+              title: 'Имя',
+              isRequired: true,
+              maxLength: 25,
+            },
+            {
+              type: 'text',
+              name: 'email',
+              inputType: 'email',
+              title: 'Почта',
+              isRequired: true,
+              maxLength: 25,
+              startWithNewLine: false,
+            },
           ],
-          isRequired: true
-      }]
-  }, {
-      elements: [{
-          name: "what-would-make-you-more-satisfied",
-          title: "What can we do to make your experience more satisfying?",
-          type: "comment",
-          visibleIf: "{satisfaction-score} = 4"
-      }, {
-          name: "nps-score",
-          title: "On a scale of zero to ten, how likely are you to recommend our product to a friend or colleague?",
-          type: "rating",
-          rateMin: 0,
-          rateMax: 10,
-      }],
-      visibleIf: "{satisfaction-score} >= 4"
-  }, {
-      elements: [{
-          name: "how-can-we-improve",
-          title: "In your opinion, how could we improve our product?",
-          type: "comment"
-      }],
-      visibleIf: "{satisfaction-score} = 3"
-  }, {
-      elements: [{
-          name: "disappointing-experience",
-          title: "Please let us know why you had such a disappointing experience with our product",
-          type: "comment"
-      }],
-      visibleIf: "{satisfaction-score} =< 2"
-  }, {
-    elements: [{
-        name: "wishes",
-        title: "Ваши пожелания",
-        type: "text",
-        isRequired: true
-    }],
-}],
-  showQuestionNumbers: "off",
-  pageNextText: "Далее",
-  completeText: "Далее",
+        },
+        {
+          type: 'panel',
+          name: 'connectionPanel',
+          title: 'Предпочитаемый вид связи',
+          elements: [
+            {
+              type: 'radiogroup',
+              name: 'connection',
+              titleLocation: 'hidden',
+              // choices: ['Телеграм', 'Tелефон', 'Skype', 'Whatsapp', 'Почта'],
+              choices: [
+                { value: 2, text: 'Телеграм' },
+                { value: 3, text: 'Tелефон' },
+                { value: 4, text: 'Skype' },
+                { value: 5, text: 'Whatsapp' },
+                { value: 1, text: 'Почта' },
+              ],
+              isRequired: true,
+              colCount: 3,
+              showNoneItem: false,
+              showOtherItem: false,
+              showSelectAllItem: false,
+              // separateSpecialChoices: true,
+              // storeOthersAsComment: true,
+              // hasComment: true,
+            },
+            {
+              type: 'text',
+              isRequired: true,
+              name: 'connectionComment',
+              titleLocation: 'hidden',
+              placeholder: 'Ваш номер/логин',
+              visibleIf: '{connection} >= 2',
+              maxLength: 100,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          type: 'radiogroup',
+          name: 'businessArea',
+          title: 'Сфера бизнеса',
+          choices: [
+            'Маркетинг',
+            'Электронная коммерция',
+            'Розничная торговля',
+            'Технологии и ПО',
+            'Финансы',
+          ],
+          isRequired: true,
+          showOtherItem: true,
+          colCount: 3,
+          separateSpecialChoices: true,
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          type: 'radiogroup',
+          name: 'employees',
+          title: 'Количество сотрудников в компании',
+          choices: ['1-10', '11-100', '101-500', '501-1000', 'Более 1000'],
+          isRequired: true,
+          colCount: 3,
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          type: 'radiogroup',
+          name: 'information',
+          title:
+            'Какую информацию вы планируете собирать с помощью нашего сервиса',
+          choices: [
+            'Мониторинг поисковой выдачи',
+            'Анализ конкурентов',
+            'Описание и цены на товары',
+            'Рейтинги и отзывы',
+            'Контактные данные',
+            'Данные социальных сетей',
+            'Данные недвижимости',
+            'Вакансии и резюме',
+            'Новости',
+          ],
+          isRequired: true,
+          showOtherItem: true,
+          colCount: 3,
+          maxLength: 100,
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          type: 'radiogroup',
+          name: 'volume',
+          title: 'Какой объем данных вы планируете собирать',
+          choices: [
+            'Менее 1000 запросов',
+            'От 1000 до 100000 запросов',
+            'Более 100000 запросов',
+          ],
+          isRequired: true,
+          colCount: 1,
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          type: 'radiogroup',
+          name: 'frequency',
+          title: 'Как часто вы планируете пользоваться нашим сервисом',
+          choices: [
+            'Ежедневно',
+            'Еженедельно',
+            'Ежемесячно',
+            'По мере необходимости',
+          ],
+          isRequired: true,
+          colCount: 1,
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          type: 'radiogroup',
+          name: 'frequency',
+          title: 'Есть ли у вас опыт работы с API?',
+          choices: ['Да', 'Нет'],
+          isRequired: true,
+          colCount: 1,
+          maxLength: 500,
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          type: 'comment',
+          name: 'instruments',
+          title: 'Какие инструменты вы используете в настоящее время',
+          isRequired: true,
+          maxLength: 500,
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          type: 'comment',
+          name: 'goals',
+          title: 'Какие цели вы ожидаете достигнуть с помощью нашего сервиса',
+          isRequired: true,
+          maxLength: 500,
+        },
+      ],
+    },
+  ],
+  showQuestionNumbers: 'off',
+  pageNextText: 'Далее',
+  completeText: 'Далее',
   showPrevButton: false,
   firstPageIsStarted: true,
-  startSurveyText: "Приступить",
-  completedHtml: "Thank you for your feedback!",
+  startSurveyText: 'Начать',
+  // completedHtml: 'Thank you for your feedback!',
+  showCompletedPage: false,
+  showProgressBar: 'belowHeader',
+  progressBarType: 'pages',
+  progressBarShowPageNumbers: false,
+  progressBarShowPageTitles: false,
   // showPreviewBeforeComplete: "showAnsweredQuestions"
-};
+  questionTitlePattern: 'numTitle',
+}
 
 // const engLocale = surveyLocalization.locales["en"];
 // // Override individual translations
 // engLocale.pagePrevText = "Back";
 // engLocale.pageNextText = "Forward";
 
-const survey = new Survey.Model(surveyJson);
+const survey = new Survey.Model(surveyJson)
 
-function displayResults (sender) {
-  const results = JSON.stringify(sender.data, null, 4);
-  document.querySelector("#surveyResults").textContent = results;
-  document.querySelector("#resultsContainer").style.display = "block"
+survey.applyTheme(theme)
+
+function displayResults(sender) {
+  const results = JSON.stringify(sender.data, null, 4)
+  document.querySelector('#surveyResults').textContent = results
+  document.querySelector('#resultsContainer').style.display = 'block'
 }
 
-survey.onComplete.add(displayResults);
+// survey.onComplete.add(displayResults)
+survey.onComplete.add(function (sender, options) {
+  console.log(sender.data)
 
-$(function() {
-  $("#surveyContainer").Survey({ model: survey });
-});
+  $('.finishScreen').removeClass('hide')
+
+  const example = {
+    firstName: 'Nik',
+    email: 'nik@bk.ru',
+    connection: 1,
+    businessArea: 'Финансы',
+    employees: 'Более 1000',
+    information: 'Вакансии и резюме',
+    volume: 'Более 100000 запросов',
+    frequency: 'Нет',
+    instruments: '123',
+    goals: '123',
+  }
+})
+
+// survey.onValueChanged.add(() => {
+//   console.log('onValueChanged')
+// })
+survey.onStarted.add(function (survey) {
+  // старт квиза
+  // console.log(survey)
+})
+
+// вывод на каждой новой странице
+survey.onCurrentPageChanged.add(function (survey) {
+  // console.log(survey.data)
+})
+
+$(function () {
+  $('#surveyContainer').Survey({ model: survey })
+})
+
+// popup
+jQuery(document).ready(function ($) {
+  //open popup
+  $('.cd-popup-trigger').on('click', function (event) {
+    event.preventDefault()
+    $('.cd-popup').addClass('is-visible')
+  })
+
+  //close popup
+  $('.cd-popup').on('click', function (event) {
+    if (
+      $(event.target).is('.cd-popup-close') ||
+      $(event.target).is('.cd-popup')
+    ) {
+      event.preventDefault()
+      $(this).removeClass('is-visible')
+    }
+  })
+  //close popup when clicking the esc keyboard button
+  $(document).keyup(function (event) {
+    if (event.which == '27') {
+      $('.cd-popup').removeClass('is-visible')
+    }
+  })
+})
