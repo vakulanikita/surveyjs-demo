@@ -7,6 +7,9 @@
 // кастомные controls
 // https://surveyjs.io/form-library/examples/external-form-navigation-system/reactjs#content-code
 
+const GOOGLE_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycby4XFsWZJgNMFTfFCbFzq1vWYPxl_QWlf4hO9eYj4x6wy_1KlQld5w10rUdBRiFW9AS/exec'
+
 const theme = {
   themeName: 'default',
   colorPalette: 'light',
@@ -111,6 +114,14 @@ engLocale.otherRequiredError = 'Заполните поле "Другое"'
 // Please enter a valid e-mail address.
 engLocale.invalidEmail = 'Введите, пожалуйста, корретный e-mail'
 
+const choices = [
+  { value: 2, text: 'Телеграм' },
+  { value: 3, text: 'Tелефон' },
+  { value: 4, text: 'Skype' },
+  { value: 5, text: 'Whatsapp' },
+  { value: 1, text: 'Почта' },
+]
+
 const surveyJson = {
   pages: [
     {
@@ -131,7 +142,7 @@ const surveyJson = {
           elements: [
             {
               type: 'text',
-              name: 'firstName',
+              name: 'name',
               title: 'Имя',
               isRequired: true,
               maxLength: 25,
@@ -157,13 +168,7 @@ const surveyJson = {
               name: 'connection',
               titleLocation: 'hidden',
               // choices: ['Телеграм', 'Tелефон', 'Skype', 'Whatsapp', 'Почта'],
-              choices: [
-                { value: 2, text: 'Телеграм' },
-                { value: 3, text: 'Tелефон' },
-                { value: 4, text: 'Skype' },
-                { value: 5, text: 'Whatsapp' },
-                { value: 1, text: 'Почта' },
-              ],
+              choices: choices,
               isRequired: true,
               colCount: 3,
               // validators: [
@@ -230,7 +235,7 @@ const surveyJson = {
           type: 'checkbox',
           name: 'information',
           title:
-            'Какую информацию вы планируете собирать с помощью нашего сервиса',
+            'Какую информацию вы планируете собирать с помощью нашего сервиса?',
           choices: [
             'Мониторинг поисковой выдачи',
             'Анализ конкурентов',
@@ -245,6 +250,7 @@ const surveyJson = {
           isRequired: true,
           showOtherItem: true,
           colCount: 3,
+          // https://github.com/surveyjs/survey-library/issues/8521
           maxLength: 100,
         },
       ],
@@ -254,7 +260,7 @@ const surveyJson = {
         {
           type: 'radiogroup',
           name: 'volume',
-          title: 'Какой объем данных вы планируете собирать',
+          title: 'Какой объем данных вы планируете собирать?',
           choices: [
             'Менее 1000 запросов',
             'От 1000 до 100000 запросов',
@@ -270,7 +276,7 @@ const surveyJson = {
         {
           type: 'radiogroup',
           name: 'frequency',
-          title: 'Как часто вы планируете пользоваться нашим сервисом',
+          title: 'Как часто вы планируете пользоваться нашим сервисом?',
           choices: [
             'Ежедневно',
             'Еженедельно',
@@ -286,12 +292,12 @@ const surveyJson = {
       elements: [
         {
           type: 'radiogroup',
-          name: 'frequency',
+          name: 'api',
           title: 'Есть ли у вас опыт работы с API?',
           choices: ['Да', 'Нет'],
           isRequired: true,
           colCount: 1,
-          maxLength: 500,
+          maxLength: 300,
         },
       ],
     },
@@ -302,7 +308,7 @@ const surveyJson = {
           name: 'instruments',
           title: 'Какие инструменты вы используете в настоящее время',
           isRequired: true,
-          maxLength: 500,
+          maxLength: 300,
         },
       ],
     },
@@ -313,7 +319,7 @@ const surveyJson = {
           name: 'goals',
           title: 'Какие цели вы ожидаете достигнуть с помощью нашего сервиса',
           isRequired: true,
-          maxLength: 500,
+          maxLength: 300,
         },
       ],
     },
@@ -352,21 +358,63 @@ function displayResults(sender) {
 // survey.onComplete.add(displayResults)
 survey.onComplete.add(function (sender, options) {
   console.log(sender.data)
+  const results = sender.data
+
+  // const example = {
+  //   name: '123',
+  //   connection: 'Телеграм',
+  //   connectionComment: '@nikitavakula',
+  //   email: 'nik@bk.ru',
+  //   businessArea: 'мыловарня',
+  //   'businessArea-Comment': 'мыловарня',
+  //   employees: '1-10',
+  //   information:
+  //     'Рейтинги и отзывы, Данные недвижимости, другое: что-то другое',
+  //   'information-Comment': 'что-то другое',
+  //   volume: 'Более 100000 запросов',
+  //   frequency: 'По мере необходимости',
+  //   api: 'Нет',
+  //   instruments: 'Какие инструменты',
+  //   goals: 'Какие цели',
+  // }
+
+  if (results.businessArea === 'other') {
+    results.businessArea = results['businessArea-Comment']
+  }
+
+  if (results.information.includes('other')) {
+    results.information[results.information.length - 1] =
+      'другое: ' + results['information-Comment']
+  }
+
+  results.information = results.information.join(', ')
+
+  results.connection = choices.find(
+    (item) => item.value === results.connection
+  ).text
+
+  let query = ''
+
+  for (const prop in results) {
+    if (prop === 'businessArea-Comment' || prop === 'information-Comment')
+      continue
+
+    query += prop + '=' + encodeURI(results[prop] || '') + '&'
+    // results.information.join(', ')
+  }
+
+  fetch(`${GOOGLE_SCRIPT_URL}?${query}`, {
+    method: 'GET',
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((e) => {
+      console.log(e)
+    })
 
   $('.finishScreen').removeClass('hide')
-
-  const example = {
-    firstName: 'Nik',
-    email: 'nik@bk.ru',
-    connection: 1,
-    businessArea: 'Финансы',
-    employees: 'Более 1000',
-    information: 'Вакансии и резюме',
-    volume: 'Более 100000 запросов',
-    frequency: 'Нет',
-    instruments: '123',
-    goals: '123',
-  }
 })
 
 // survey.onValueChanged.add(() => {
