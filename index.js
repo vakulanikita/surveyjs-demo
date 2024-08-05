@@ -7,6 +7,7 @@
 // кастомные controls
 // https://surveyjs.io/form-library/examples/external-form-navigation-system/reactjs#content-code
 
+// https://docs.google.com/spreadsheets/d/1NzxUHr5HFgZaObYBSwLrz-TGueve_P_X1H_shJfc3oA/edit?gid=0#gid=0
 const GOOGLE_SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycby4XFsWZJgNMFTfFCbFzq1vWYPxl_QWlf4hO9eYj4x6wy_1KlQld5w10rUdBRiFW9AS/exec'
 
@@ -113,6 +114,8 @@ engLocale.otherItemText = 'Другое'
 engLocale.otherRequiredError = 'Заполните поле "Другое"'
 // Please enter a valid e-mail address.
 engLocale.invalidEmail = 'Введите, пожалуйста, корретный e-mail'
+// engLocale.pagePrevText = "Back";
+// engLocale.pageNextText = "Forward";
 
 const choices = [
   { value: 2, text: 'Телеграм' },
@@ -340,22 +343,9 @@ const surveyJson = {
   questionTitlePattern: 'numTitle',
 }
 
-// const engLocale = surveyLocalization.locales["en"];
-// // Override individual translations
-// engLocale.pagePrevText = "Back";
-// engLocale.pageNextText = "Forward";
-
 const survey = new Survey.Model(surveyJson)
-
 survey.applyTheme(theme)
 
-function displayResults(sender) {
-  const results = JSON.stringify(sender.data, null, 4)
-  document.querySelector('#surveyResults').textContent = results
-  document.querySelector('#resultsContainer').style.display = 'block'
-}
-
-// survey.onComplete.add(displayResults)
 survey.onComplete.add(function (sender, options) {
   console.log(sender.data)
   const results = sender.data
@@ -434,28 +424,63 @@ $(function () {
   $('#surveyContainer').Survey({ model: survey })
 })
 
-// popup
-jQuery(document).ready(function ($) {
-  //open popup
-  $('.cd-popup-trigger').on('click', function (event) {
-    event.preventDefault()
-    $('.cd-popup').addClass('is-visible')
-  })
+// demo
 
-  //close popup
-  $('.cd-popup').on('click', function (event) {
-    if (
-      $(event.target).is('.cd-popup-close') ||
-      $(event.target).is('.cd-popup')
-    ) {
-      event.preventDefault()
-      $(this).removeClass('is-visible')
-    }
-  })
-  //close popup when clicking the esc keyboard button
-  $(document).keyup(function (event) {
-    if (event.which == '27') {
-      $('.cd-popup').removeClass('is-visible')
-    }
-  })
-})
+const surveyJson2 = {
+  pages: [
+    {
+      elements: [
+        {
+          name: 'satisfaction-score',
+          title: 'How would you describe your experience with our product?',
+          type: 'radiogroup',
+          choices: [
+            { value: 5, text: 'Fully satisfying' },
+            { value: 4, text: 'Generally satisfying' },
+            { value: 3, text: 'Neutral' },
+            { value: 2, text: 'Rather unsatisfying' },
+            { value: 1, text: 'Not satisfying at all' },
+          ],
+          isRequired: true,
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          name: 'what-would-make-you-more-satisfied',
+          title: 'What can we do to make your experience more satisfying?',
+          type: 'comment',
+        },
+        {
+          name: 'nps-score',
+          title:
+            'On a scale of zero to ten, how likely are you to recommend our product to a friend or colleague?',
+          type: 'rating',
+          rateMin: 0,
+          rateMax: 10,
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          name: 'how-can-we-improve',
+          title: 'In your opinion, how could we improve our product?',
+          type: 'comment',
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          name: 'disappointing-experience',
+          title:
+            'Please let us know why you had such a disappointing experience with our product',
+          type: 'comment',
+        },
+      ],
+    },
+  ],
+  showTOC: true,
+}

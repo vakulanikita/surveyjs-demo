@@ -34,7 +34,7 @@ a {
   cursor: pointer;
   width: 200px;
   margin: 0 auto;
-  margin-bottom: 90px;
+  margin-bottom: 60px;
 }
 .logo svg {
   width: 100%;
@@ -42,7 +42,7 @@ a {
 @media screen and (max-width: 1400px), (max-height: 800px) {
   .logo {
     width: 170px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -57,11 +57,11 @@ a {
   background-image: url("/images/bg.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 66px 50px 20px 50px;
+  padding: 60px 50px 20px 50px;
 }
 @media screen and (max-width: 1400px), (max-height: 800px) {
   .container {
-    padding: 40px 32px 20px 32px;
+    padding: 35px 32px 20px 32px;
   }
 }
 @media screen and (max-width: 768px) {
