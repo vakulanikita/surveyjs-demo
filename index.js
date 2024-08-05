@@ -16,7 +16,7 @@ const theme = {
   backgroundImageAttachment: 'scroll',
   backgroundImageFit: 'cover',
   cssVariables: {
-    // '--font-family': 'Red Hat Display',
+    '--font-family': 'Montserrat',
     '--sjs-corner-radius': '4px',
     '--sjs-base-unit': '8px',
     '--sjs-shadow-small': '0px 1px 2px 0px rgba(0, 0, 0, 0.15)',
@@ -92,7 +92,7 @@ const theme = {
     '--sjs-article-font-default-paragraphIndent': '0px',
     '--sjs-article-font-default-textCase': 'none',
     '--sjs-general-backcolor-dim': 'rgba(255, 255, 255, 1)',
-    '--sjs-primary-backcolor': 'rgba(25, 179, 148, 1)',
+    '--sjs-primary-backcolor': '#833471',
     '--sjs-primary-backcolor-dark': 'rgba(20, 164, 139, 1)',
     '--sjs-primary-backcolor-light': 'rgba(25, 179, 148, 0.1)',
     '--sjs-primary-forecolor': 'rgba(255, 255, 255, 1)',
@@ -166,6 +166,12 @@ const surveyJson = {
               ],
               isRequired: true,
               colCount: 3,
+              // validators: [
+              //   {
+              //     type: 'answercount',
+              //     maxCount: 1,
+              //   },
+              // ],
               showNoneItem: false,
               showOtherItem: false,
               showSelectAllItem: false,
@@ -221,7 +227,7 @@ const surveyJson = {
     {
       elements: [
         {
-          type: 'radiogroup',
+          type: 'checkbox',
           name: 'information',
           title:
             'Какую информацию вы планируете собирать с помощью нашего сервиса',

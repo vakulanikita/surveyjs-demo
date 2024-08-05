@@ -13,7 +13,7 @@ body {
   position: relative;
   padding: 0;
   margin: 0;
-  font-family: 'Red Hat Display', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 
@@ -83,7 +83,7 @@ a {
   color: #fff;
   outline: none;
   border: none;
-  font-weight: $extrabold;
+  font-weight: $semibold;
 
   &:hover {
     cursor: pointer;
@@ -171,6 +171,7 @@ a {
   @media screen and (max-width: 768px) {
     .welcomeH4 {
       font-size: $xl;
+      line-height: 25px;
     }
 
     .welcomeSpan {
@@ -185,9 +186,13 @@ a {
 .sd-body#sp_100 {
   padding: 76px 15px;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    padding: 55px 16px;
+  }
 }
 
-// кнопка на welcome слайде
+// Кнопка "Начать"
 .sd-btn.sd-navigation__start-btn {
   width: 282px;
   border-radius: 12px;
@@ -196,7 +201,7 @@ a {
   color: #fff;
   outline: none;
   border: none;
-  font-weight: $extrabold;
+  font-weight: $semibold;
   font-size: $xl;
   padding: 0 !important;
 
@@ -222,8 +227,29 @@ a {
   }
 }
 
+.sd-root-modern--mobile {
+  .sd-btn.sd-navigation__start-btn {
+    margin-top: 30px;
+  }
+}
+
+// Кнопка "Начать"
+.sd-body.sd-body--responsive .sd-body__navigation {
+  padding-top: 46px;
+  padding-bottom: 0;
+}
+
+.sd-root-modern--mobile {
+  .sd-body.sd-body--responsive .sd-body__navigation {
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
+}
+
 // кнопка "далее"
-.sd-btn.sd-navigation__next-btn {
+.sd-btn.sd-navigation__next-btn,
+// кнопка "далее" на последнем слайде
+.sd-btn.sd-navigation__complete-btn {
   width: 180px;
   border-radius: 12px;
   background-color: $purple;
@@ -231,17 +257,30 @@ a {
   color: #fff;
   outline: none;
   border: none;
-  font-weight: $extrabold;
+  font-weight: $semibold;
   padding: 0 !important;
   font-size: $base;
+  margin-bottom: 25px;
+  flex-shrink: 0;
+
+  // @media screen and (max-width: 768px) {
+  //   max-width: calc(100% - 32px);
+  //   margin: 0 auto;
+  //   margin-bottom: 25px;
+  // }
+}
+.sd-root-modern--mobile {
+  .sd-btn.sd-navigation__next-btn,
+  // кнопка "далее" на последнем слайде
+  .sd-btn.sd-navigation__complete-btn {
+    border-radius: 10px;
+    max-width: calc(100% - 48px);
+    margin: 0 auto;
+    margin-bottom: 25px;
+  }
 }
 
 .sd-root-modern {
-}
-
-.sd-body.sd-body--responsive .sd-body__navigation {
-  padding-top: 46px;
-  padding-bottom: 25px;
 }
 
 // прогресс бар
@@ -254,7 +293,7 @@ a {
 }
 
 .sd-body__progress {
-  height: 6px;
+  height: 8px;
 }
 
 // скрывает "Page 1 of 10"
@@ -265,7 +304,11 @@ a {
 // тайтл над вопросом
 h4.sd-title.sd-element__title > span {
   font-size: $xl_3;
-  font-weight: $black;
+  font-weight: $bold;
+
+  @media screen and (max-width: 768px) {
+    font-size: $xl;
+  }
 }
 
 .sd-element--with-frame {
@@ -279,13 +322,53 @@ h4.sd-title.sd-element__title > span {
   }
 }
 
+// формы ввода
+.sd-input.sd-text,
+.sd-input.sd-comment {
+  background-color: #fff;
+  box-shadow: none;
+  border-radius: 8px;
+  border: 1px solid #c8c8c8;
+
+  &:focus {
+    border-color: #368ce3;
+    -webkit-box-shadow: 0px 0px 0px 2px rgba(54, 140, 227, 0.2);
+    -moz-box-shadow: 0px 0px 0px 2px rgba(54, 140, 227, 0.2);
+    box-shadow: 0px 0px 0px 2px rgba(54, 140, 227, 0.2);
+  }
+
+  &.sd-input--error {
+    border-color: #eb4d4b;
+    box-shadow: none;
+  }
+}
+
+.sd-input.sd-comment {
+}
+
+// форма
 .sd-body.sd-body--responsive {
   padding: 52px 0 0 0;
 }
 
+// мобильная форма
+.sd-root-modern--mobile {
+  .sd-body.sd-body--responsive {
+    padding: 25px 0 0 0;
+  }
+}
+
+// .sd-root-modern--mobile.sd-body.sd-body--responsive {
+//   padding: 0;
+// }
+
 .sd-element--complex.sd-element--with-frame > .sd-element__header {
   padding-bottom: 46px;
   padding-top: 0;
+
+  @media screen and (max-width: 768px) {
+    padding-bottom: 30px;
+  }
 }
 
 .sd-element__content {
@@ -296,7 +379,7 @@ h4.sd-title.sd-element__title > span {
   padding-bottom: 46px;
   span {
     font-size: $xl_3;
-    font-weight: $black;
+    font-weight: $extrabold;
   }
 }
 
@@ -316,19 +399,45 @@ h4.sd-title.sd-element__title > span {
   .finishScreenTitle {
     margin-bottom: 24px;
     font-size: $xl_3;
-    font-weight: $black;
+    font-weight: $extrabold;
   }
 
   .finishScreenSubtitle {
-    max-width: 450px;
+    // max-width: 450px;
     margin-bottom: 46px;
-    font-size: $xl;
+    font-size: $lg;
     line-height: 24px;
   }
 
   .finishScreenBtn {
     width: 282px;
     height: 64px;
-    font-size: $xl;
+    font-size: $lg;
+    font-weight: $bold;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 55px 16px 55px 16px;
+
+    .finishScreenTitle {
+      font-size: $xl;
+    }
+
+    .finishScreenSubtitle {
+      font-size: $base;
+      margin-bottom: 35px;
+      line-height: 22px;
+    }
+
+    .finishScreenBtn {
+      height: 50px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .finishScreenBtn {
+      width: 100%;
+      font-size: $lg;
+    }
   }
 }
